@@ -1,0 +1,3 @@
+name = Menu Fun
+core = 7.x
+files[] = menufun.module
