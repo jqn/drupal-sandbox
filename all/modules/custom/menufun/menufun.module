@@ -40,7 +40,7 @@ return $form;
 * Validate the form.
 */
 function menufun_form_validate($form, &$form_state) {
-if ($form_state['values']['voucher_id'] == NULL ) {
+if ($form_state['values']['redeem'] == NULL ) {
   // We notify the form API that this field has failed validation.
   form_set_error('voucher_id',
     t('Please enter a voucher number!'));
@@ -50,9 +50,7 @@ if ($form_state['values']['voucher_id'] == NULL ) {
 * Handle post-validation form submission.
 */
 function menufun_form_submit($form, &$form_state) {
-$id_number = $form_state['values']['voucher_id'];
-drupal_set_message(t('Voucher %id_number has been redeemed!',
-  array('%id_number' => $id_number)));
-  $options = array('query' => array('$id_number' => $id_number));
-drupal_goto('node/%', $options);
+$voucher_id = $form_state['values']['redeem'];
+drupal_set_message(t('Voucher %voucher_id has been redeemed!',
+drupal_goto('voucher/redeem/' . $voucher_id);
 }
